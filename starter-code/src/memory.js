@@ -19,7 +19,18 @@ MemoryGame.prototype.shuffleCards = function () {
 };
 
 MemoryGame.prototype.checkIfPair = function (firstCard, secondCard) {
+  if(firstCard == secondCard){
+    this.pairsClicked++;
+    this.pairsGuessed++;
+    return true;
+  }else {
+    this.pairsClicked++;
+    return false;
+  }
 }
 
 MemoryGame.prototype.isFinished = function () {
+  if(this.pairsGuessed === (this.cards.length / 2)){
+    return true
+  }else return false
 };
