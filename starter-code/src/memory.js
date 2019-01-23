@@ -1,52 +1,25 @@
- var MemoryGame = function (cards) {
-   this.cards = cards;
-   this.pickedCards = [""];
-   this.pairsClicked = 0;
-   this.pairsGuessed = 0;
-   this.win = false;
+let MemoryGame = function (cards) {
+  this.cards = cards;
+  this.pickedCards = [];
+  this.pairsClicked = 0;
+  this.pairsGuessed = 0;
 };
 
- MemoryGame.prototype.shuffleCard = function (cardsArr) {
-   
+MemoryGame.prototype.shuffleCards = function () {
+  let copyCards = this.cards;
+  let newContainer = [];
 
-
-   var currentIndex = cardsArr.length, temporaryValue, randomIndex;
-   // While there remain elements to shuffle...
-   while (0 !== currentIndex) {
-     
-    // Pick a remaining element...
-    randomIndex = Math.floor(Math.random() * currentIndex);
-    currentIndex -= 1;
-    
-    // And swap it with the current element.
-    temporaryValue = cardsArr[currentIndex];
-    cardsArr[currentIndex] = cardsArr[randomIndex];
-    cardsArr[randomIndex] = temporaryValue;
+  while(copyCards.length > 0){
+    let indexSelection = Math.floor(Math.random() * copyCards.length);
+    let extracted = copyCards.splice(indexSelection, 1);
+    newContainer.push(extracted[0]);
   }
-  return cardsArr;
-
+  this.cards = newContainer;
+  // return newContainer;
 };
 
+MemoryGame.prototype.checkIfPair = function (firstCard, secondCard) {
+}
 
-
- MemoryGame.prototype.checkIfPair = function (firstCard, secondCard) {
-   this.pairsClicked++;
-   if( firstCard === secondCard){
-     this.pairsGuessed++;
-     return true;
-   } else {
-     return false;
-   }
-  
- }
-
- MemoryGame.prototype.finished = function () {
-   
-   while (this.win == false ){
-     if(this.pairsGuessed === 12) {
-     win = true;
-     return win;
-   }
-  }
-
- };
+MemoryGame.prototype.isFinished = function () {
+};
